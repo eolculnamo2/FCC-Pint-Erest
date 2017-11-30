@@ -1,0 +1,11 @@
+.pint{
+  display: inline-block;
+  max-width: 750px;
+  max-height: 500px;
+  border: 5px solid purple;
+}
+.image{
+  padding: 100px;
+  max-width: 400px;
+  max-height: 400px;
+}

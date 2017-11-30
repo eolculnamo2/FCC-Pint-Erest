@@ -10,15 +10,55 @@
 	<link  rel="stylesheet" href="/style.css" >
 	</head>
 
+<!-- May make into two separate pages: One prior to login and one after?-->
+
+	<nav>
+		<span>
+			Pint-Erest
+		 </span>
+		 <span>
+			 <%= user %>
+		 </span>
+		 <span>
+			+ Add Pint
+		 </span>
+		 <span>
+			 My Wall
+		 </span>
+		 <span>
+			 Find Wall
+		 </span>
+		 <a href = "/auth/logout"<span>
+			 Logout
+		 </span></a>
+	</nav>
 	<h1>
-		Hello World
+		Pint-Erest
 	</h1>
+
+	<a href = "/auth/twitter"<button>
+		Twitter Login
+	</button></a>
+
+	<form method="POST" action = "/addPint">
+		Name of Pint<br>
+		<input name = "title"><br>
+		Image<br>
+		<input name = "image"><br>
+		<input type = "submit">
+	</form>
 	<div id = "app">
 	</div>
 
-	<script src="https://fb.me/react-15.0.0.js"></script>
-	    <script src="https://fb.me/react-dom-15.0.0.js"></script>
-	    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.min.js"></script>
-	<script type="text/babel" src="../react/homeComp.js">
-	//ReactDOM.render(<h1>Hello World of React </h1>, document.getElementById('app'));
-</script>
+	<div class = "wall">
+
+		<% pints.forEach((x,i)=>{ %>
+			<div class = "pint">
+				<center>
+				<h4> <%= x.title %> </h4>
+				<img class = "image" src = "<%= x.image%>">
+			</center>
+			</div>
+		<% }) %>
+
+	</div>

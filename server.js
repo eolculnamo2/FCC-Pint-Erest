@@ -21,12 +21,6 @@ app.use(cookieSession({
   keys: ["l023f2oginsdlkbjenrbuerlibun34gunbo4g2"]
 }))
 
-/*app.use(session({secret:"asdflkj",
-                saveUninitialized: true,
-                resave: true,
-                cookie: {secure: false}}));
-*/
-
 //maybe import below from separate file eventually
 app.use(passport.initialize());
 app.use(passport.session());
@@ -40,7 +34,8 @@ passport.serializeUser((user, done)=>{
 })
 
 passport.deserializeUser((id, done)=>{
-  db.findById(id).then((user)=>{
+  var account = db.Account
+  account.findById(id).then((user)=>{
     console.log("deserialized")
     done(null,user)
   })
@@ -52,14 +47,15 @@ consumerSecret: "3MD1zRSN2dJjqeI5nRy44BaSm01YqYM5d5HpfOQmur1ejVKTYD",
 callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
 },
 function(token, tokenSecret, profile, done) {
+  var account = db.Account
 //Callback... Finds current profile if exists else it creates new.
-    db.findOne({twitterId: profile.id}).then((currentUser)=>{
+    account.findOne({twitterId: profile.id}).then((currentUser)=>{
       if(currentUser){
         console.log("Already a user");
         done(null,currentUser);
       }
       else{
-        new db({
+        new account({
           username: profile.username,
           twiterId: profile.id,
           pints: []
@@ -82,13 +78,39 @@ app.get('/auth/twitter',
     function(req, res) {
       // Successful authentication, comes here. Can use req.user to access
       //  user object
-      res.send(req.user);
-      res.redirect('/');
+      res.render('index',{
+        user: req.user.username,
+        pints: req.user.pints
+      });
+
     });
 
     app.get('/auth/logout',(req,res)=>{
       req.logout();
+      res.redirect('/')
     })
+
+    app.post('/addPint',(req,res)=>{
+      var account = db.Account;
+      //var pint = db.Pint;
+     var newPint = {
+        title: req.body.title,
+        image: req.body.image
+      }
+      console.log(newPint)
+      account.findOneAndUpdate({twitterId: req.user.twitterId},
+                      {$push: {pints: newPint}}
+                    ).then(()=>{
+                        res.render("index", {
+                        user: req.user.username,
+                        pints: req.user.pints
+                      })
+
+                    })
+
+
+    })
+
 
 app.listen(3000, ()=>{
   console.log('Server On')

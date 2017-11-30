@@ -20,7 +20,17 @@ var Account = new Schema({
     pints: Array
 })
 
+var Pint = new Schema({
+  title: String,
+  image: String,
+  likedBy: Array,
+  comments: Array
+})
+
 var Account = mongoose.model('pinterest', Account)
 
 //Export
-module.exports = Account;
+module.exports = {
+  Account: Account,
+  Pint: Pint
+}

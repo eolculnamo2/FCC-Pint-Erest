@@ -18,5 +18,12 @@ Workflow:
 3. Create Main wall
 4. Create user/own walls.
 
+Data workflow:
+1. User authentication.
+2. Push new pints/Delete Current Pints.
+3. Add Likes/Comment on Pints. (Save for End. Not a user story)
+4. Filter for own pints.
+5. Filter for another user's pints.
+6. Filter for all pints.
 
-webpack installation trouble: Had to use yarn add webpack to install.
+**Webpack won't install. Will not use React without webpack.
