@@ -16,14 +16,11 @@ console.log("Connected to Mongo via Mongoose")
 
 var Account = new Schema({
     username: String,
-    password: String,
-    pints: Array,
+    twitterId: String,
+    pints: Array
 })
 
 var Account = mongoose.model('pinterest', Account)
 
 //Export
-module.exports = {
-  Accont: Account
-
-}
+module.exports = Account;
