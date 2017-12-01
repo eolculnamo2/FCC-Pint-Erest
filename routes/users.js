@@ -159,6 +159,17 @@ router.get('/auth/twitter',
                       }))
     })
 
-
+    router.post('/delete', (req,res)=>{
+      var account = db.Account;
+      var index = req.body.deleter;
+      console.log(index);
+      account.findOneAndUpdate({twitterId: req.user.twitterId},
+         {$pull: {pints: {image: index}}},{new: true},(err,result)=>{
+        res.render("index",{
+          user: req.user.username,
+          pints: result.pints
+        })
+      })
+    })
 
   module.exports = router;

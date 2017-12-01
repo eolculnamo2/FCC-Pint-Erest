@@ -61,12 +61,16 @@
 	<div class = "wall">
 
 		<% pints.forEach((x,i)=>{ %>
+			<form method = "POST" action = "/delete">
+				<input type = "hidden" name = "deleter" value = "<%= x.image %>">
 			<div class = "pint">
+				<button type = "submit"> <h4 style = "float:right"> X </h4></button>
 				<center>
 				<h4> <%= x.title %> </h4>
-				<img class = "image" src = "<%= x.image%>">
+				<img class = "image" src = "<%= x.image%>" onError="this.onerror=null;this.src='http://www.clker.com/cliparts/J/h/C/1/o/C/broken-file-icon-md.png';">
 			</center>
 			</div>
+		</form>
 		<% }) %>
 
 	</div>
