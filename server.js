@@ -20,9 +20,6 @@ app.use("/", usersRoute)
 
 
 
-
-
-
-app.listen(3000, ()=>{
-  console.log('Server On')
-})
+var listener = app.listen(process.env.PORT, function () {
+  console.log('Your app is listening on port ' + listener.address().port);
+});

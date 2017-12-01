@@ -38,7 +38,7 @@ passport.deserializeUser((id, done)=>{
 passport.use(new TwitterStrategy({
   consumerKey: "SHb2WIKszdaca91mqwMIwd45D",
 consumerSecret: "3MD1zRSN2dJjqeI5nRy44BaSm01YqYM5d5HpfOQmur1ejVKTYD",
-callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+callbackURL: "https://spicy-windscreen.glitch.me/auth/twitter/callback"
 },
 function(token, tokenSecret, profile, done) {
   var account = db.Account
@@ -78,10 +78,7 @@ router.get('/auth/twitter',
 
       // Successful authentication, comes here. Can use req.user to access
       //  user object
-      res.render('index',{
-        user: req.user.username,
-        pints: req.user.pints
-      });
+      res.redirect("/")
 
     });
 
@@ -93,13 +90,13 @@ router.get('/auth/twitter',
 
     router.get('/myWall', (req,res)=>{
       if(req.user){
-      res.render("index",{
+      res.render("myWall",{
           user: req.user.username,
           pints: req.user.pints
       })
     }
     else{
-      res.render('index',{
+      res.render('myWall',{
         user: "",
         pints: []
       })
@@ -165,7 +162,7 @@ router.get('/auth/twitter',
       console.log(index);
       account.findOneAndUpdate({twitterId: req.user.twitterId},
          {$pull: {pints: {image: index}}},{new: true},(err,result)=>{
-        res.render("index",{
+        res.render("myWall",{
           user: req.user.username,
           pints: result.pints
         })

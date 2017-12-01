@@ -5,6 +5,10 @@ body{
 nav{
   background-color: #ffd48c;
   height: 50px;
+  font-size: 30px;
+}
+#addForm{
+  display: none;
 }
 .lobster{
   font-family: 'Lobster', cursive;
@@ -28,4 +32,9 @@ nav{
 }
 .menuLinks{
   padding: 10px;
+  cursor: pointer;
+}
+a, a:hover, a:active, a:visited{
+  color: black;
+  cursor: pointer;
 }
