@@ -7,39 +7,45 @@
   <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
 	<link  rel="stylesheet" href="/style.css" >
 	</head>
 
 <!-- May make into two separate pages: One prior to login and one after?-->
 
 	<nav>
-		<span>
+		<span class ="spanLeft">
+			<span class = "menuLinks lobster">
 			Pint-Erest
 		 </span>
-		 <span>
+		 <span class = "menuLinks">
 			 <%= user %>
 		 </span>
-		 <span>
+	 </span>
+		 <span class = "spanRight">
+			 <span  class = "menuLinks">
 			+ Add Pint
 		 </span>
-		 <span>
+		 <a href="/myWall"><span class = "menuLinks">
 			 My Wall
-		 </span>
-		 <span>
+		 </span></a>
+		 <span class = "menuLinks">
 			 Find Wall
 		 </span>
-		 <a href = "/auth/logout"<span>
+		 <a href = "/auth/logout"<span class = "menuLinks">
 			 Logout
 		 </span></a>
+	 </span>
 	</nav>
-	<h1>
+	<center>
+	<h1 class = "lobster">
 		Pint-Erest
 	</h1>
 
 	<a href = "/auth/twitter"<button>
 		Twitter Login
 	</button></a>
-
+</center>
 	<form method="POST" action = "/addPint">
 		Name of Pint<br>
 		<input name = "title"><br>
@@ -47,6 +53,8 @@
 		<input name = "image"><br>
 		<input type = "submit">
 	</form>
+
+
 	<div id = "app">
 	</div>
 

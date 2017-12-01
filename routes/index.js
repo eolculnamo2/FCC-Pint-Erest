@@ -5,11 +5,13 @@ var db = require('../db/data');
 var mongoose = require('mongoose');
 var passport = require('passport')
 var server = require('../server')
+var users = require('./users')
 var router = express.Router();
 var app = express();
 
-
+/*
 router.get('/',(req,res)=>{
+console.log(req.user)
   if(req.user){
   res.render("index",{
       user: req.user.username,
@@ -23,7 +25,7 @@ else{
   })
 }
 })
-
+*/
 
 
 module.exports = router;
