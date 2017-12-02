@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title> Pint-Erest </title>
-  <link id="favicon" rel="icon" href="https://cdn.glitch.com/30fa63ee-79f7-42c9-992a-f7f5bdcabbf4%2Fthumbnails%2Ficon.png?1511284247590" type="image/x-icon">
+  <link id="favicon" rel="icon" href="https://cdn.glitch.com/8bce054b-0e3b-4c54-a796-238c36a224d1%2Fthumbnails%2Ffavicon.png?1512154371986" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
 	<meta name="description" content="Rob's Portfolio Page">
   <meta charset="utf-8">
@@ -20,34 +20,41 @@
 			<span class = "menuLinks lobster">
 			Pint-Erest
 		 </span>
-		 <span class = "menuLinks">
+		 <span class = "menuLinks user">
 			 <%= user %>
 		 </span>
 	 </span>
     
 		 <span class = "spanRight">
           <% if(user){ %>
-			 <span onclick = "showForm()" class = "menuLinks">
+       <div id = "dropdown">
+         <h3 id = "menuTitle" onclick = "drop()">
+           Menu
+         </h3>
+         <div class = "dropmenuLinks">
+           
+         <a> <h3 class = "dropped" onclick = "showForm()">
 			+ Add Pint
-		 </span>
-       		 <a href = "/"><span class = "menuLinks">
+           </h3></a>
+       <a href = "/"> <h3 class = "dropped">
 			 All
-             </span></a>
-		 <a href="/myWall"><span class = "menuLinks">
+		 </h3></a>
+		 <a class = "dropped" href="/myWall"><h3 class = "dropped">
 			 My Wall
-		 </span></a>
-       
-    
-		 <a href = "/auth/logout"<span class = "menuLinks">
+		 </h3></a>
+            <a href = "/auth/logout"> <h3 class = "dropped">
 			 Logout
-		 </span></a>
+		 </h3></a>
+         </div>
+       </div>
+		
     <% } %>
 
 <% if(!user) {%>
 
-	<a href = "/auth/twitter"><span>
+	<a href = "/auth/twitter"><h3>
 		Twitter Login
-	</span></a>
+	</h3></a>
 
 <%} %>
 
@@ -63,7 +70,7 @@
     	<form method="POST" action = "/addPint">
 		Name of Pint<br>
 		<input name = "title"><br>
-		Image<br>
+		Image URL<br>
 		<input name = "image"><br>
 		<input type = "submit">
         <button onclick = "hideForm()" type = "button">
@@ -81,19 +88,18 @@
 	</div>
 
 	<div class = "wall">
-
+	<center>
 		<% pints.forEach((x,i)=>{ %>
-			
 			<div class = "pint">
 				
-				<center>
+			
 				<h4> <%= x.title %> </h4>
 				<img class = "image" src = "<%= x.image%>" onError="this.onerror=null;this.src='http://www.clker.com/cliparts/J/h/C/1/o/C/broken-file-icon-md.png';">
-			</center>
+		
 			</div>
 	
 		<% }) %>
-
+	</center>
 	</div>
 <script
   src="https://code.jquery.com/jquery-3.2.1.js"

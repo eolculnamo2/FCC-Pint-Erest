@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head>
 	<title> Pint-Erest </title>
-  <link id="favicon" rel="icon" href="https://cdn.glitch.com/30fa63ee-79f7-42c9-992a-f7f5bdcabbf4%2Fthumbnails%2Ficon.png?1511284247590" type="image/x-icon">
+  <link id="favicon" rel="icon" href="https://cdn.glitch.com/8bce054b-0e3b-4c54-a796-238c36a224d1%2Fthumbnails%2Ffavicon.png?1512154371986" type="image/x-icon">
   <link href="https://fonts.googleapis.com/css?family=Spectral+SC" rel="stylesheet">
 	<meta name="description" content="Rob's Portfolio Page">
   <meta charset="utf-8">
@@ -18,24 +18,32 @@
 			<span class = "menuLinks lobster">
 			Pint-Erest
 		 </span>
-		 <span class = "menuLinks">
+		 <span class = "menuLinks user">
 			 <%= user %>
 		 </span>
 	 </span>
 		 <span class = "spanRight">
-			 <span  class = "menuLinks">
+       <div id = "dropdown">
+         <h3 id = "menuTitle" onclick = "drop()">
+           Menu
+         </h3>
+         <div class = "dropmenuLinks">
+           
+         <a> <h3 class = "dropped" onclick = "showForm()">
 			+ Add Pint
-		 </span>
-       <a href = "/"> <span class = "menuLinks">
+           </h3></a>
+       <a href = "/"> <h3 class = "dropped">
 			 All
-		 </span></a>
-		 <a href="/myWall"><span class = "menuLinks">
+		 </h3></a>
+		 <a class = "dropped" href="/myWall"><h3 class = "dropped">
 			 My Wall
-		 </span></a>
-		
-		 <a href = "/auth/logout"<span class = "menuLinks">
+		 </h3></a>
+            <a href = "/auth/logout"> <h3 class = "dropped">
 			 Logout
-		 </span></a>
+		 </h3></a>
+         </div>
+       </div>
+		
 	 </span>
 	</nav>
 <body>
@@ -52,9 +60,12 @@
     	<form method="POST" action = "/addPint">
 		Name of Pint<br>
 		<input name = "title"><br>
-		Image<br>
+		Image URL<br>
 		<input name = "image"><br>
 		<input type = "submit">
+        <button onclick="hideForm()" type="button">
+        Cancel
+        </button>
 	</form>
           </div>
     
@@ -68,9 +79,9 @@
 	<div class = "wall">
 
 		<% pints.forEach((x,i)=>{ %>
+    <div class = "pint">
 			<form method = "POST" action = "/delete">
 				<input type = "hidden" name = "deleter" value = "<%= x.image %>">
-			<div class = "pint">
 				<button type = "submit"> <h4 style = "float:right"> X </h4></button>
 				<center>
 				<h4> <%= x.title %> </h4>
